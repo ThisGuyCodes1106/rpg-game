@@ -149,3 +149,84 @@ setTimeout(function(){
   console.log(answer)  
 }, 3000)
 ///////////////////////////////////////////////////////////////////
+//CLASSES
+const moduleStats = {
+	module1: {
+			moduleName: 'Learn JS',
+			studentsEnrolled: 2340,
+			studentsCompleted: 2210
+	},
+	module2: {
+			moduleName: 'CSS Basics',
+			studentsEnrolled: 1893,
+			studentsCompleted: 1810
+	},
+	module3: {
+			moduleName: 'Responsive Design',
+			studentsEnrolled: 4600,
+			studentsCompleted: 4357
+	}
+}
+
+class Module {
+	constructor(data){
+			Object.assign(this, data)
+			this.percentCompletedModule = this.studentsCompleted / this.studentsEnrolled * 100
+	}
+	logPercentCompletedModule(){
+			console.log(this.percentCompletedModule)
+	}
+}
+
+const responsiveDesign = new Module(moduleStats.module3)
+responsiveDesign.logPercentCompletedModule()
+
+
+
+/////////////////////////////CLASSES///////////////////////////
+const adData = {
+	facebook: {
+			site: 'Facebook',
+			adViews: 23477,
+			clicks: 210,
+			conversions: 5,
+	},
+	twitter: {
+			site: 'Twitter',
+			adViews: 13904,
+			clicks: 192,
+			conversions: 9,
+	},
+	instagram: {
+			site: 'Instagram',
+			adViews: 3256,
+			clicks: 200,
+			conversions: 2,
+	}
+}
+
+class AdvertisingChannel {
+	constructor(data){
+			Object.assign(this, data)
+			this.conversionRate = (this.conversions/this.clicks * 100).toFixed(2)
+	}
+			
+	getAdvertisingChannelHtml() {
+        const {site, adViews, clicks, conversions, conversionRate} = this
+					return `
+					<div class="site-name"> ${site} </div>
+					<div>Views: ${adViews} </div>
+					<div>Clicks: ${clicks} </div>
+					<div>Conversions: ${conversions} </div>
+					<div>Conv. Rate: <span class="highlight"> ${conversionRate} %</span></div>`
+			}
+}
+
+const facebook = new AdvertisingChannel(adData.facebook)
+const twitter = new AdvertisingChannel(adData.twitter)
+const instagram = new AdvertisingChannel(adData.instagram)
+
+document.getElementById('fb').innerHTML = facebook.getAdvertisingChannelHtml()
+document.getElementById('twit').innerHTML = twitter.getAdvertisingChannelHtml()
+document.getElementById('insta').innerHTML = instagram.getAdvertisingChannelHtml()
+///////////////////////////////////////////////////////////////////
